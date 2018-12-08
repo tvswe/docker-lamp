@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  php-apache:
+    build: docker/php
+    links:
+      - mariadb
+      - neo4j
+      - redis
+    ports:
+      - "3080:80"
+    volumes:
+      - ./projects:/var/www/html
+
+  mariadb:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+
+  neo4j:
+    image: neo4j:latest
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
