@@ -1,2 +1,4 @@
 /.idea/
+/docker/mysql/*
+/docker/neo4j/*
 /projects/*/

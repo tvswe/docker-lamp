@@ -16,12 +16,17 @@ services:
     image: mariadb:latest
     environment:
       - MYSQL_ROOT_PASSWORD=my-secret-pw
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
 
   neo4j:
     image: neo4j:latest
     ports:
       - "7474:7474"
       - "7687:7687"
+    volumes:
+      - ./docker/neo4j/data:/data
+      - ./docker/neo4j/logs:/logs
 
   redis:
     image: redis:latest
